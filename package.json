@@ -4,6 +4,7 @@
   "description": "Cypress Assignment Advance level",
   "main": "index.js",
   "scripts": {
+    "clean:reports": "cleandir ./reports/",
     "mochawesome:mergeToText": "mochawesome-merge cypress/reports/*.json>cypress/reports/merged_report.txt",
     "generate_mochawesome_report": "marge cypress/reports/merged_report.json --reportDir ./ --inline",
     "mochawesome:report": "npm run mochawesome:mergeToText && rename cypress\\reports\\merged_report.txt merged_report.json && npm run generate_mochawesome_report",
