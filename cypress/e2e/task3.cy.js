@@ -1,36 +1,34 @@
-// import { CheckoutPage } from "../pages/checkout_page"
-// import { FragranceMenPage } from "../pages/fragrance_men_page"
-// import { HomePage } from "../pages/home_page"
-// import { LoginPage } from "../pages/login_page"
-// import { SignupPage } from "../pages/signup_page"
+import { HomePage } from "../pages/home_page"
+import { LoginPage } from "../pages/login_page"
+import { SignupPage } from "../pages/signup_page"
+import { FragranceMenPage } from "../pages/fragrance_men_page"
+import { CheckoutPage } from "../pages/checkout_page"
 
-// const loginPage = new LoginPage()
-// const signupPage = new SignupPage()
-// const homePage = new HomePage()
-// const checkoutPage = new CheckoutPage()
-// const fragranceMenPage = new FragranceMenPage()
+const homePage = new HomePage()
+const loginPage = new LoginPage()
+const signupPage = new SignupPage()
+const fragranceMenPage = new FragranceMenPage()
+const checkoutPage = new CheckoutPage()
+
 
 describe('Task 3', () => {
      before(() => {
         cy.visit('/')
     })
     it('Scenario : Login with valid credentials & sort the items from low to high', function() {
-      loginPage.clickloginlink()
+      homePage.clickloginlink()
       loginPage.clickContinueBtn()
       signupPage.fillSignUpForm()
       signupPage.clickContinueBtn()
       // loginPage.enterUsername(Cypress.env('username'))
       // loginPage.enterPassword(Cypress.env('password'))
       // loginPage.clickLoginBtn()
-      loginPage.verifyWelcomeMsg()
-
+      homePage.verifyWelcomeMsg()
       homePage.clickSubMenuOption('Fragrance','Men')
-      homePage.selectPriceFilter()
-
+      homePage.selectFilter()
       fragranceMenPage.checkPrices()
       fragranceMenPage.addItemsToCart()
-      fragranceMenPage.clickCheckoutButton()
-
+      homePage.clickCheckoutButton()
       checkoutPage.verifyTotalItemsAddedInCart()
       checkoutPage.verifyQuantityOfAddedItemsInCart()
       checkoutPage.verifyTotalPriceOfAddedItemsInCart()
