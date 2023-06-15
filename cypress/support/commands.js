@@ -29,7 +29,6 @@ import "cypress-localstorage-commands";
 import { uniqueNamesGenerator, names } from "unique-names-generator";
 require('cypress-downloadfile/lib/downloadFileCommand')
 const moment = require('moment');
-const mysql = require('mysql');
 const TestRail = require('testrail-api');
 
 Cypress.Commands.add("writeDataInFile", (path, nameof, value) => {
@@ -53,34 +52,6 @@ Cypress.Commands.add("createRandomName", () => {
   });
 
   return shortName;
-});
-
-// Create a MySQL connection pool
-const pool = mysql.createPool({
-  host: 'sonar-metrics.c87wxijx5ezi.us-east-1.rds.amazonaws.com',
-  user: 'automation_user',
-  password: 'kd2R:C)6BEfdAZ]}',
-  database: 'sonardb',
-});
-
-// Custom Cypress command to execute MySQL queries
-Cypress.Commands.add('queryDatabase', (query, params = []) => {
-  return new Promise((resolve, reject) => {
-    pool.getConnection((err, connection) => {
-      if (err) {
-        reject(err);
-      } else {
-        connection.query(query, params, (error, results) => {
-          connection.release();
-          if (error) {
-            reject(error);
-          } else {
-            resolve(results);
-          }
-        });
-      }
-    });
-  });
 });
 
 Cypress.Commands.add('addTestRailResult', (caseId, statusId) => {
