@@ -36,7 +36,7 @@ module.exports = defineConfig({
     json: true,
   },
   e2e: {
-    baseUrl: 'https://automationteststore.com/',
+    baseUrl: 'http://127.0.0.1:8082/',
     setupNodeEvents(on, config) {
       // implement node event listeners here
       on('task', {
